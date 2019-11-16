@@ -1,0 +1,21 @@
+.icon-nav-rotate {
+	animation: iconNavRotate 6s ease infinite;
+}
+
+@keyframes iconNavRotate {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+@keyframes iconAnimate {
+	0% {
+		color: white;
+	}
+	100% {
+		color: deeppink;
+	}
+}
