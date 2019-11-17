@@ -23,6 +23,10 @@
             animation: titleLogin 5s ease infinite;
         }
 
+        .icon-nav-rotate {
+            animation: iconNavRotate 6s ease 3;
+        }
+
         .card-login {
             /* box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.30); */
             animation: cardLogin 5s ease infinite;
@@ -60,6 +64,21 @@
             }
         }
 
+
+        @keyframes iconNavRotate {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                color: orangered;
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
         @keyframes cardLogin {
             0% {
                 box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.35);
@@ -91,7 +110,7 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <h2 class="mt-5 mb-3 title-login text-info">TK ISLAM MIFTAHUL JANNAH</h2>
+            <h2 class="mt-5 mb-3 icon-nav-rotate text-info">TK ISLAM MIFTAHUL JANNAH</h2>
             <div class="col-md-8">
                 <div class="card card-login mt-3">
                     <div class="card-header">

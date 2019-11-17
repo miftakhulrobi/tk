@@ -93,23 +93,23 @@ $pdf->writeHTMLCell(0, 0, '', '', $title, 0, 1, 0, true, 'C', true);
 
 $table = '<table style="border: 1px solid grey; padding: 5px;">';
 $table .=   '<tr>
-                <th style="border: 1px solid grey;">NO.</th>
-                <th style="border: 1px solid grey;">NO. Induk</th>
-                <th style="border: 1px solid grey;">Nama Siswa</th>
+                <th style="border: 1px solid grey; width:40px;">NO.</th>
+                <th style="border: 1px solid grey; width:290px;">NO. Induk</th>
+                <th style="border: 1px solid grey; width:290px;">Nama Siswa</th>
             </tr>';
 $no = 1;
 foreach ($siswa as $s) {
     $table .= '<tr>
-                    <td style="border: 1px solid grey;">' . $no++ . '</td>
-                    <td style="border: 1px solid grey;">' . $s->noinduk . '</td>
-                    <td style="border: 1px solid grey;">' . $s->namasiswa . '</td>
+                    <td style="border: 1px solid grey; width:40px;">' . $no++ . '</td>
+                    <td style="border: 1px solid grey; width:290px;">' . $s->noinduk . '</td>
+                    <td style="border: 1px solid grey; width:290px;">' . $s->namasiswa . '</td>
                 </tr>';
 }
 $table .= '</table>';
 $bottom = '<p>Dicetak Oleh: ' . $this->session->userdata('nama') . ',  ' . $now . '</p>';
 
-$pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'C', true);
-$pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'R', true);
+$pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'L', true);
+$pdf->writeHTMLCell(0, 0, '', '', $bottom, 0, 1, 0, true, 'R', true);
 
 // move pointer to last page
 $pdf->lastPage();

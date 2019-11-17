@@ -135,7 +135,7 @@ $table .= '<table style="padding: 7px; border: 1px solid grey;">
 
 $bottom = '<p>Dicetak Oleh: ' . $this->session->userdata('nama') . ',  ' . $now . '</p>';
 
-$pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'L', true);
 $pdf->writeHTMLCell(0, 0, '', '', $bottom, 0, 1, 0, true, 'R', true);
 
 // move pointer to last page

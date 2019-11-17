@@ -59,7 +59,8 @@
 
         <?php if ($ccatatan) : ?>
             <span><b>Catatan:</b></span><span class="float-right">Di input oleh: <?= $catatan->penginput ?></span>
-            <p><?= $catatan->catatan ?></p>
+            <p class="mt-3"><?= $catatan->catatan ?></p>
         <?php endif ?>
+        <a target="_blank" href="<?= base_url('pdf/nilai/' . $siswa->siswa_id . '/' . $classes->class_id . '/' . $year->year_id . '/' . $semester . '/' . $bulan . '/' . $table . '/' . $join) ?>" class="btn btn-info mt-4">Cetak Nilai</a>
     </div>
 </div>

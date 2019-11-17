@@ -19,7 +19,7 @@
                         <tr>
                             <td>1</td>
                             <td>
-                                <a href="<?= base_url('siswa/detailnilai/' . $siswa->siswa_id . '/' . $classes->class_id . '/' . $year->year_id . '/' . $semester . '/' . $bulan . '/agamadanmoral/t_agamadanmoral/') ?>">Agama dan Moral</a>
+                                <a href="<?= base_url('siswa/detailnilai/' . $siswa->siswa_id . '/' . $classes->class_id . '/' . $year->year_id . '/' . $semester . '/' . $bulan . '/agamadanmoral/t_agamadanmoral') ?>">Agama dan Moral</a>
                             </td>
                         </tr>
                         <tr>

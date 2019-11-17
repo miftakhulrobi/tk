@@ -86,76 +86,50 @@ $pdf->SetFillColor(255, 255, 127);
 // set some text for example
 
 $title = <<<EDD
-    <h3>DATA SISWA KELAS $classes->classname  T.A  $year->yearname</h3>
+    <h3>EKSTRA KULIKULER</h3>
 EDD;
 
-$pdf->writeHTMLCell(0, 0, '', '', $title, 0, 1, 0, true, 'C', true);
+$subtitle = '<h3>NILAI ' . strtoupper($tabel) . ' SEMESTER ' . $semester . ' BULAN ' . $bulan . '</h3>';
 
-$table .= '<table style="padding: 7px; border: 1px solid grey;">
-            <tr>
-                <td rowspan="2">Nama Anak Didik</td>
-                <td style="border: 1px solid grey;">Nama Lengkap</td>
-                <td style="border: 1px solid grey;">' . $siswa->namasiswa . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Nama Panggilan</td>
-                <td style="border: 1px solid grey;">' . $siswa->namapgln . '</td>
-            </tr>
-          </table>
-          <br>
-          <br>';
+$user = '<p>Nama Anak Didik: ' . $siswa->namasiswa . '</p>
+        <p>Siswa Kelas: ' . $classes->classname . '</p>
+        <p>Tahun Ajaran: ' . $year->yearname . '</p>';
 
-$table .= '<table style="padding: 7px; border: 1px solid grey;">
-            <tr>
-                <td rowspan="5">Data Siswa</td>
-                <td style="border: 1px solid grey;">NO. Induk</td>
-                <td style="border: 1px solid grey;">' . $siswa->noinduk . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Jenis Kelamin</td>
-                <td style="border: 1px solid grey;">' . $siswa->jk . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Tmp Tgl Lahir</td>
-                <td style="border: 1px solid grey;">' . $siswa->tgllahir . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Agama</td>
-                <td style="border: 1px solid grey;">' . $siswa->agama . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Anak Ke</td>
-                <td style="border: 1px solid grey;">' . $siswa->anakke . '</td>
-            </tr>
-          </table><br><br>';
 
-$table .= '<table style="padding: 7px; border: 1px solid grey;">
-            <tr>
-                <td rowspan="4">Orang Tua</td>
-                <td style="border: 1px solid grey;">Ayah</td>
-                <td style="border: 1px solid grey;">' . $siswa->ayah . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Ibu</td>
-                <td style="border: 1px solid grey;">' . $siswa->ibu . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Pekerjaan Ayah</td>
-                <td style="border: 1px solid grey;">' . $siswa->pekerjaanayah . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Pekerjaan Ibu</td>
-                <td style="border: 1px solid grey;">' . $siswa->pekerjaanibu . '</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid grey;">Alamat Lengkap</td>
-                <td style="border: 1px solid grey;" colspan="2">' . $siswa->alamatortu . '</td>
-            </tr>
-          </table>';
+$table = '<table style="border: 1px solid grey; padding: 5px;">';
+$table .=   '<tr>
+                <th style="border: 1px solid grey; width: 40px;">NO.</th>
+                <th style="border: 1px solid grey; width: 460px;">Program</th>
+                <th style="border: 1px solid grey; width: 40px;">B</th>
+                <th style="border: 1px solid grey; width: 40px;">C</th>
+                <th style="border: 1px solid grey; width: 40px;">K</th>
+            </tr>';
+$no = 1;
+foreach ($ekstrakulikuler as $a) {
+    $table .= '<tr>
+                    <td style="border: 1px solid grey; width: 40px;">' . $no++ . '</td>
+                    <td style="border: 1px solid grey; width: 460px;">' . $a->program . '</td>
+                    <td style="border: 1px solid grey; width: 40px">' . $a->b . '</td>
+                    <td style="border: 1px solid grey; width: 40px;">' . $a->c . '</td>
+                    <td style="border: 1px solid grey; width: 40px;">' . $a->k . '</td>
+                </tr>';
+}
+$table .= '</table>';
 
+$catatans = '<p>Catatan:</p>
+            <table style="border: 1px solid grey; padding: 10px;">
+                <tr>
+                    <td>' . $catatan->catatan . '</td>
+                </tr>
+            </table>';
 $bottom = '<p>Dicetak Oleh: ' . $this->session->userdata('nama') . ',  ' . $now . '</p>';
 
+$pdf->writeHTMLCell(0, 0, '', '', $title, 0, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(0, 0, '', '', $subtitle, 0, 1, 0, true, 'C', true);
+$pdf->writeHTMLCell(0, 0, '', '', $user, 0, 1, 0, true, 'L', true);
+
 $pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, 'L', true);
+$pdf->writeHTMLCell(0, 0, '', '', $catatans, 0, 1, 0, true, 'L', true);
 $pdf->writeHTMLCell(0, 0, '', '', $bottom, 0, 1, 0, true, 'R', true);
 
 // move pointer to last page

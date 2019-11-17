@@ -10,6 +10,7 @@ class Pdf extends CI_Controller
         $this->load->library('pdf_report');
         $this->load->model('pdf_m');
         $this->load->model('setting_m');
+        $this->load->model('siswa_m');
     }
 
     // siswa
@@ -48,4 +49,83 @@ class Pdf extends CI_Controller
         $this->load->view('page/pdf/guru/guruid.php', $data);
     }
 
+    // nilai
+    public function nilai($siswa_id, $class_id, $year_id, $semester, $bulan, $table, $join)
+    {
+        $datasiswa = ['siswa_id' => $siswa_id];
+        $dataclass = ['class_id' => $class_id];
+        $datayear = ['year_id' => $year_id];
+
+        $data['siswa'] = $this->siswa_m->getid('siswas', $datasiswa)->row();
+        $data['classes'] = $this->siswa_m->getid('classes', $dataclass)->row();
+        $data['year'] = $this->siswa_m->getid('years', $datayear)->row();
+        $data['semester'] = $semester;
+
+        $where = [
+            'siswa_id' => $siswa_id,
+            'class_id' => $class_id,
+            'year_id' => $year_id,
+            'semester' => $semester,
+            'bulan' => $bulan,
+        ];
+        $data['aspekpengembangan'] = $this->siswa_m->getdata($table, $join, $where)->result();
+        $data['bulan'] = $bulan;
+        $data['tabel'] = $table;
+        $data['join'] = $join;
+
+        $catatan = [
+            'siswa_id' => $siswa_id,
+            'class_id' => $class_id,
+            'year_id' => $year_id,
+            'semester' => $semester,
+            'bulan' => $bulan,
+            'table' => $table,
+        ];
+        $data['ccatatan'] = $this->siswa_m->getcatatanaspek('catatan', $catatan)->num_rows();
+        if ($data['ccatatan']) {
+            $data['catatan'] = $this->siswa_m->getcatatanaspek('catatan', $catatan)->row();
+        }
+
+        $data['now'] = date('dMY');
+        $this->load->view('page/pdf/nilai/nilai.php', $data);
+    }
+
+    public function nilaiekstra($siswa_id, $class_id, $year_id, $semester, $bulan, $table, $join)
+    {
+        $datasiswa = ['siswa_id' => $siswa_id];
+        $dataclass = ['class_id' => $class_id];
+        $datayear = ['year_id' => $year_id];
+
+        $data['siswa'] = $this->siswa_m->getid('siswas', $datasiswa)->row();
+        $data['classes'] = $this->siswa_m->getid('classes', $dataclass)->row();
+        $data['year'] = $this->siswa_m->getid('years', $datayear)->row();
+        $data['semester'] = $semester;
+
+        $where = [
+            'siswa_id' => $siswa_id,
+            'class_id' => $class_id,
+            'year_id' => $year_id,
+            'semester' => $semester,
+            'bulan' => $bulan,
+        ];
+        $data['ekstrakulikuler'] = $this->siswa_m->getdataekstra($table, $join, $where)->result();
+        $data['bulan'] = $bulan;
+        $data['tabel'] = $table;
+
+        $catatan = [
+            'siswa_id' => $siswa_id,
+            'class_id' => $class_id,
+            'year_id' => $year_id,
+            'semester' => $semester,
+            'bulan' => $bulan,
+            'table' => $table,
+        ];
+        $data['ccatatan'] = $this->siswa_m->getcatatanaspek('catatan', $catatan)->num_rows();
+        if ($data['ccatatan']) {
+            $data['catatan'] = $this->siswa_m->getcatatanaspek('catatan', $catatan)->row();
+        }
+
+        $data['now'] = date('dMY');
+        $this->load->view('page/pdf/nilai/nilaiekstra.php', $data);
+    }
 }

@@ -95,6 +95,8 @@ class Siswa extends CI_Controller
         ];
         $data['aspekpengembangan'] = $this->siswa_m->getdata($table, $join, $where)->result();
         $data['bulan'] = $bulan;
+        $data['table'] = $table;
+        $data['join'] = $join;
 
         $catatan = [
             'siswa_id' => $siswa_id,
@@ -135,6 +137,8 @@ class Siswa extends CI_Controller
         ];
         $data['ekstrakulikuler'] = $this->siswa_m->getdataekstra($table, $join, $where)->result();
         $data['bulan'] = $bulan;
+        $data['table'] = $table;
+        $data['join'] = $join;
 
         $catatan = [
             'siswa_id' => $siswa_id,
