@@ -158,4 +158,31 @@ class Siswa extends CI_Controller
         $this->load->view('page/layout/footer');
         $this->load->view('page/layout/close');
     }
+
+    // tahun sebelumya
+    public function prevyear()
+    {
+        $data['cyear'] = $this->siswa_m->getyearaktif('years', 'Selesai')->num_rows();
+        if ($data['cyear']) {
+            $data['year'] = $this->siswa_m->getyearaktif('years', 'Selesai')->result();
+        }
+
+        $this->load->view('page/layout/header');
+        $this->load->view('page/siswa/prevyear/year', $data);
+        $this->load->view('page/layout/footer');
+        $this->load->view('page/layout/close');
+    }
+
+    public function classesprevyear($year_id)
+    {
+        $datayear = ['year_id' => $year_id];
+        $data['year'] = $this->siswa_m->getid('years', $datayear)->row();
+
+        $data['classes'] = $this->siswa_m->getid('classes', $datayear)->result();
+
+        $this->load->view('page/layout/header');
+        $this->load->view('page/siswa/prevyear/classesprevyear', $data);
+        $this->load->view('page/layout/footer');
+        $this->load->view('page/layout/close');
+    }
 }

@@ -80,6 +80,11 @@ class Setting_m extends CI_Model
         return $this->db->update($table, $data);
     }
 
+    public function destroydata($table, $where)
+    {
+        return $this->db->delete($table, $where);
+    }
+
     // profile
     public function updateprofile($table, $data, $id)
     {

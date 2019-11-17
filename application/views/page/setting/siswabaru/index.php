@@ -23,6 +23,7 @@
                         <td>
                             <a href="#" class="btn btn-info btn-sm detail" siswa_id="<?= $s->siswa_id ?>" data-toggle="modal" data-target="#detail"><i class="fas fa-info"></i> Detail</a>
                             <a href="<?= base_url('setting/siswaedit/' . $s->siswa_id) ?>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="#" class="btn btn-info btn-sm hapus-siswa" siswa_id="<?= $s->siswa_id ?>"><i class="fas fa-trash"></i> Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach ?>

@@ -1,3 +1,4 @@
+<script src="<?= base_url('assets') ?>/js/sweetalert.min.js"></script>
 <script>
     function showSiswa(data) {
         this.namasiswa = data.namasiswa;
@@ -96,5 +97,46 @@
                 target.innerHTML = siswa.detail();
             }
         })
+    })
+
+
+    $('.hapus-siswa').click(function(e) {
+        const id = $(this).attr('siswa_id');
+        swal({
+            title: 'Yakin menghapus data ini?',
+            text: "Siswa ini pindah sekolah atau lainya!. Data siswa dan blueprint nilai siswa akan terhapus!",
+            type: 'warning',
+            buttons: {
+                cancel: {
+                    visible: true,
+                    text: 'Tidak, Kembali!',
+                    className: 'btn btn-danger'
+                },
+                confirm: {
+                    text: 'Ya, Lanjutkan!',
+                    className: 'btn btn-success'
+                }
+            }
+        }).then((willDelete) => {
+            if (willDelete) {
+                window.location = "<?= base_url('setting/siswadestroy/') ?>" + id;
+                swal("Sukses! Data siswa dan blueprint nilai siswa berhasil di hapus!", {
+                    icon: "success",
+                    buttons: {
+                        confirm: {
+                            className: 'btn btn-success'
+                        }
+                    }
+                });
+            } else {
+                swal("Data siswa disimpan kembali!", {
+                    buttons: {
+                        confirm: {
+                            className: 'btn btn-success'
+                        }
+                    }
+                });
+            }
+        });
     })
 </script>

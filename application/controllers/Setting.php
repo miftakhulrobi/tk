@@ -216,6 +216,65 @@ class Setting extends CI_Controller
         redirect('setting/siswa/' . $this->input->post('class_id'));
     }
 
+    public function siswadestroy($id)
+    {
+        $siswa = $this->setting_m->getsiswaid('siswas', $id)->row();
+        $wheresiswa1 = [
+            'siswa_id' => $siswa->siswa_id,
+            'class_id' => $siswa->class_id,
+            'year_id' => $siswa->year_id,
+            'semester' => 1,
+        ];
+        $wheresiswa2 = [
+            'siswa_id' => $siswa->siswa_id,
+            'class_id' => $siswa->class_id,
+            'year_id' => $siswa->year_id,
+            'semester' => 2,
+        ];
+        $where = ['siswa_id' => $siswa->siswa_id];
+        // agama dan moral
+        $this->setting_m->destroydata('agamadanmoral', $wheresiswa1);
+        $this->setting_m->destroydata('agamadanmoral', $wheresiswa2);
+        // bahasa
+        $this->setting_m->destroydata('bahasa', $wheresiswa1);
+        $this->setting_m->destroydata('bahasa', $wheresiswa2);
+        // kognitif
+        $this->setting_m->destroydata('kognitif', $wheresiswa1);
+        $this->setting_m->destroydata('kognitif', $wheresiswa2);
+        // motorik
+        $this->setting_m->destroydata('motorik', $wheresiswa1);
+        $this->setting_m->destroydata('motorik', $wheresiswa2);
+        // seni
+        $this->setting_m->destroydata('seni', $wheresiswa1);
+        $this->setting_m->destroydata('seni', $wheresiswa2);
+        // sosialemosional
+        $this->setting_m->destroydata('sosialemosional', $wheresiswa1);
+        $this->setting_m->destroydata('sosialemosional', $wheresiswa2);
+        // ekstraagama
+        $this->setting_m->destroydata('ekstraagama', $wheresiswa1);
+        $this->setting_m->destroydata('ekstraagama', $wheresiswa2);
+        // ekstrabahasajawa
+        $this->setting_m->destroydata('ekstrabahasajawa', $wheresiswa1);
+        $this->setting_m->destroydata('ekstrabahasajawa', $wheresiswa2);
+        // ekstradrumbband
+        $this->setting_m->destroydata('ekstradrumbband', $wheresiswa1);
+        $this->setting_m->destroydata('ekstradrumbband', $wheresiswa2);
+        // ekstramenari
+        $this->setting_m->destroydata('ekstramenari', $wheresiswa1);
+        $this->setting_m->destroydata('ekstramenari', $wheresiswa2);
+        // ekstramenggambar
+        $this->setting_m->destroydata('ekstramenggambar', $wheresiswa1);
+        $this->setting_m->destroydata('ekstramenggambar', $wheresiswa2);
+        // catatan
+        $this->setting_m->destroydata('catatan', $wheresiswa1);
+        $this->setting_m->destroydata('catatan', $wheresiswa2);
+        // siswa
+        $this->setting_m->destroydata('siswas', $where);
+
+        $this->session->set_flashdata('success', 'Data siswa dan data blueprint nilai siswa berhasil di hapus!');
+        redirect('home');
+    }
+
     // profile
     public function profile()
     {
