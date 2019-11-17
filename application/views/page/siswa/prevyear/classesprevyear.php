@@ -19,7 +19,7 @@
                         <td><?= $c->classname ?></td>
                         <td><a href="#" class="badge badge-danger btn-sm" disabled>Selesai</a></td>
                         <td>
-                            <a href="<?= base_url('siswa/show/' . $c->class_id) ?>" class="btn btn-info btn-sm">Kelas</a>
+                            <a href="<?= base_url('siswa/show/' . $c->class_id) ?>" class="btn btn-info btn-sm">Siswa</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
