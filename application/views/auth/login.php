@@ -110,7 +110,7 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <h2 class="mt-5 mb-3 icon-nav-rotate text-info">TK ISLAM MIFTAHUL JANNAH</h2>
+            <h2 class="mt-5 mb-3 icon-nav-rotate text-info">TK ISLAM MIFTAAHUL JANNAH</h2>
             <div class="col-md-8">
                 <div class="card card-login mt-3">
                     <div class="card-header">
