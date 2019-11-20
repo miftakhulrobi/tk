@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Siswa_m extends CI_Model
 {
+
     public function getyearaktif($table, $status)
     {
         return $this->db->get_where($table, ['status' => $status]);
