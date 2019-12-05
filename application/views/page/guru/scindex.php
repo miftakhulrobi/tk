@@ -59,10 +59,9 @@
         }
     }
 
-    const btnShow = document.querySelector('.show-guru');
     const target = document.querySelector('#target');
 
-    btnShow.addEventListener('click', function(e) {
+    $('.show-guru').click(function(e) {
         e.preventDefault();
         const id = $(this).attr('data-guru');
         $.ajax({
